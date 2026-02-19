@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kou works - iOSアプリ開発</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+        .header p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        nav {
+            background: #fff;
+            padding: 15px 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        nav a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        section {
+            margin-bottom: 60px;
+        }
+        h2 {
+            font-size: 24px;
+            margin-bottom: 24px;
+            color: #333;
+            border-left: 4px solid #667eea;
+            padding-left: 12px;
+        }
+        .about-content {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+        .about-content p {
+            margin-bottom: 16px;
+            color: #555;
+        }
+        .company-info {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+        .company-info table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .company-info th, .company-info td {
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        .company-info th {
+            width: 30%;
+            color: #667eea;
+            font-weight: 600;
+        }
+        .apps {
+            display: grid;
+            gap: 24px;
+        }
+        .app-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .app-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 18px;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+        .app-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .app-info h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+        .app-info p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+        .app-store-badge {
+            display: inline-block;
+            background: #000;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 12px;
+            text-decoration: none;
+        }
+        .app-store-badge:hover {
+            background: #333;
+        }
+        .contact {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+        .contact p {
+            color: #555;
+            margin-bottom: 16px;
+        }
+        .contact a {
+            color: #667eea;
+        }
+        .contact-email {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+        .contact-email:hover {
+            background: #5a6fd6;
+        }
+        .policy-section {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+        .policy-section h3 {
+            font-size: 18px;
+            color: #667eea;
+            margin-top: 24px;
+            margin-bottom: 12px;
+        }
+        .policy-section h3:first-child {
+            margin-top: 0;
+        }
+        .policy-section p, .policy-section ul {
+            color: #555;
+            margin-bottom: 12px;
+        }
+        .policy-section ul {
+            margin-left: 24px;
+        }
+        .footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .footer p {
+            margin-bottom: 8px;
+        }
+        .footer a {
+            color: #aaa;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>kou works</h1>
+        <p>便利で使いやすいiOSアプリを開発</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#about">会社概要</a></li>
+            <li><a href="#apps">提供アプリ</a></li>
+            <li><a href="#contact">お問い合わせ</a></li>
+            <li><a href="#privacy">プライバシーポリシー</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <section id="about">
+            <h2>会社概要</h2>
+            <div class="about-content">
+                <p>kou worksは、iOSアプリの企画・開発・運営を行う個人事業です。</p>
+                <p>「日常をもっと便利に、もっと楽しく」をモットーに、ユーザーの皆様に喜んでいただけるアプリを開発しています。シンプルで直感的なデザインと、確かな技術力で、使いやすいアプリをお届けします。</p>
+                <p>お客様からのフィードバックを大切にし、継続的なアップデートを行いながら、より良いアプリ体験を追求しています。</p>
+            </div>
+
+            <div class="company-info" style="margin-top: 24px;">
+                <table>
+                    <tr>
+                        <th>事業者名</th>
+                        <td>kou works</td>
+                    </tr>
+                    <tr>
+                        <th>代表者</th>
+                        <td>篠田 和伸</td>
+                    </tr>
+                    <tr>
+                        <th>設立</th>
+                        <td>2025年</td>
+                    </tr>
+                    <tr>
+                        <th>事業内容</th>
+                        <td>iOSアプリケーションの企画・開発・運営</td>
+                    </tr>
+                    <tr>
+                        <th>メールアドレス</th>
+                        <td><a href="mailto:contact@kou-works.jp">contact@kou-works.jp</a></td>
+                    </tr>
+                    <tr>
+                        <th>Webサイト</th>
+                        <td><a href="https://kou-works.jp">https://kou-works.jp</a></td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <section id="apps">
+            <h2>提供アプリ</h2>
+            <div class="apps">
+                <div class="app-card">
+                    <div class="app-icon">
+                        <img src="icon_meishi.png" alt="展示会名刺アイコン">
+                    </div>
+                    <div class="app-info">
+                        <h3>展示会名刺</h3>
+                        <p>展示会やイベントで集めた名刺をカメラで撮影するだけで自動的に情報を読み取り、簡単に整理・管理できるアプリです。OCR技術により、氏名・会社名・電話番号・メールアドレスなどを自動認識。フォルダ分けやCSV出力機能も搭載しています。</p>
+                        <a href="https://apps.apple.com/app/id6758286019" class="app-store-badge">App Storeで見る</a>
+                    </div>
+                </div>
+                <div class="app-card">
+                    <div class="app-icon">
+                        <img src="icon_gekiga.png" alt="劇画集中線!!!アイコン">
+                    </div>
+                    <div class="app-info">
+                        <h3>劇画集中線!!!</h3>
+                        <p>写真に漫画風の集中線やテキストを追加して、インパクトのある画像を作成できるアプリです。SNS投稿やプレゼン資料など、様々なシーンで活用できます。直感的な操作で、誰でも簡単にドラマチックな画像を作成できます。</p>
+                        <a href="https://apps.apple.com/app/id6758319039" class="app-store-badge">App Storeで見る</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>お問い合わせ</h2>
+            <div class="contact">
+                <p>アプリに関するご質問、ご要望、不具合のご報告など、お気軽にお問い合わせください。</p>
+                <p>通常、2〜3営業日以内にご返信いたします。</p>
+                <a href="mailto:contact@kou-works.jp" class="contact-email">contact@kou-works.jp にメールを送る</a>
+            </div>
+        </section>
+
+        <section id="privacy">
+            <h2>プライバシーポリシー</h2>
+            <div class="policy-section">
+                <p>最終更新日: 2025年2月</p>
+
+                <h3>はじめに</h3>
+                <p>kou works（以下「当社」）は、お客様のプライバシーを尊重し、個人情報の保護に努めています。本プライバシーポリシーは、当社が提供するアプリケーションにおける個人情報の取り扱いについて説明します。</p>
+
+                <h3>収集する情報</h3>
+                <p>当社のアプリは、以下の情報にアクセスする場合があります：</p>
+                <ul>
+                    <li><strong>カメラ・写真ライブラリ：</strong>名刺の撮影や写真の編集のために使用します。撮影された画像はお使いの端末内にのみ保存され、外部サーバーへ送信されることはありません。</li>
+                    <li><strong>入力された情報：</strong>アプリ内で入力された情報（名刺情報など）は、すべてお使いの端末内にのみ保存されます。</li>
+                </ul>
+
+                <h3>情報の利用目的</h3>
+                <p>収集した情報は、以下の目的でのみ使用されます：</p>
+                <ul>
+                    <li>アプリ機能の提供</li>
+                    <li>ユーザー体験の向上</li>
+                </ul>
+
+                <h3>情報の共有</h3>
+                <p>当社は、お客様の個人情報を第三者と共有することはありません。ただし、お客様自身が共有機能を使用して情報を共有する場合を除きます。</p>
+
+                <h3>データの保存</h3>
+                <p>すべてのデータはお使いの端末内に保存されます。当社のサーバーにデータが送信されることはありません。アプリを削除すると、保存されたデータも削除されます。</p>
+
+                <h3>アプリ内課金</h3>
+                <p>アプリ内課金をご利用の場合、購入処理はApple Inc.によって行われます。当社が決済情報やクレジットカード情報を取得することはありません。</p>
+
+                <h3>お子様のプライバシー</h3>
+                <p>当社のアプリは、13歳未満のお子様から意図的に個人情報を収集することはありません。</p>
+
+                <h3>プライバシーポリシーの変更</h3>
+                <p>本プライバシーポリシーは、必要に応じて更新されることがあります。変更があった場合は、本ページにて通知いたします。</p>
+
+                <h3>お問い合わせ</h3>
+                <p>本プライバシーポリシーに関するご質問は、<a href="mailto:contact@kou-works.jp">contact@kou-works.jp</a> までお問い合わせください。</p>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 kou works</p>
+        <p><a href="mailto:contact@kou-works.jp">contact@kou-works.jp</a></p>
+    </footer>
+</body>
+</html>
